@@ -1,0 +1,5 @@
+first_names = ['James', 'Albert', 'Anna', 'Eugene', 'Apollo', 'Roberta']
+second_names = ['Miller', 'Charles', 'Dickenson', 'Miligan', 'Smith', 'Williams']
+countries = ['Russia', 'Belgium', 'Germany', 'USA', 'Australia', 'Ukraine', 'Poland', 'New Zealand']
+occupations = ['Programmer', 'Driver', 'Plumber', 'Policeman', 'Cashier', 'Sportsman']
+educations = ['Bachelor', 'High School', 'Master', 'PhD']
