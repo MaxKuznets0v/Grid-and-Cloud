@@ -1,0 +1,90 @@
+---
+swagger: "2.0"
+info:
+  description: |
+    This is server for signing user documents.
+  version: 1
+  title: Signer
+host: virtserver.swaggerhub.com
+basePath: /GridandClound/Signer/v1
+tags:
+- name: document
+  description: Everything about documents
+- name: user
+  description: Saving the user data
+schemes:
+- https
+- http
+paths:
+  /user:
+    post:
+      tags:
+      - user
+      summary: Create user
+      description: Creating user and his persona token.
+      consumes:
+      - application/xml
+      produces:
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Created user object
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        "400":
+          description: User exists
+        "201":
+          description: Success
+  /document:
+    post:
+      tags:
+      - document
+      summary: Sign document
+      description: Getting signed document with user token.
+      consumes:
+      - application/xml
+      produces:
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Signing document
+        required: true
+        schema:
+          $ref: '#/definitions/Document'
+      responses:
+        "404":
+          description: User not found
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Document_signed'
+definitions:
+  User:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    xml:
+      name: User
+  Document:
+    type: object
+    properties:
+      doc:
+        type: string
+    xml:
+      name: Document
+  Document_signed:
+    type: object
+    properties:
+      doc:
+        type: string
+      sign:
+        type: string
+    xml:
+      name: Document_signed

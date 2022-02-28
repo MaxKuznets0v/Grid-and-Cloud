@@ -1,0 +1,90 @@
+---
+swagger: "2.0"
+info:
+  description: This is a server which asks for signatire
+  version: 1
+  title: Requester
+host: virtserver.swaggerhub.com
+basePath: /GridandClound/Requester/v1
+tags:
+- name: request
+  description: Requesting to sign doc
+schemes:
+- https
+paths:
+  /request:
+    post:
+      tags:
+      - request
+      summary: asks for signature
+      description: asks for signature
+      consumes:
+      - application/xml
+      produces:
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Fields for request
+        required: false
+        schema:
+          $ref: '#/definitions/Request'
+      responses:
+        "404":
+          description: User not found
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Document_signed'
+  /register:
+    post:
+      tags:
+      - request
+      summary: register new user
+      description: register new user
+      consumes:
+      - application/xml
+      produces:
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Register new user
+        required: false
+        schema:
+          $ref: '#/definitions/Register'
+      responses:
+        "400":
+          description: User exists
+        "201":
+          description: Success
+definitions:
+  Request:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      doc:
+        type: string
+    xml:
+      name: Request
+  Register:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    xml:
+      name: Register
+  Document_signed:
+    type: object
+    properties:
+      doc:
+        type: string
+      sign:
+        type: string
+    xml:
+      name: Document_signed
