@@ -23,7 +23,7 @@ class Document(Resource):
         conn = sqlite3.connect('users.sqlite3')
         cur = conn.cursor()
 
-        cur.execute(f'SELECT id FROM users WHERE users.email = "{email}" AND users.password = "{password}"')
+        cur.execute(f"SELECT id FROM users WHERE users.email = '{email}' AND users.password = '{password}'")
         res = cur.fetchall()
         if len(res) < 1:
             return utils.resp_xml("WRONG CREDENTIALS", 404)

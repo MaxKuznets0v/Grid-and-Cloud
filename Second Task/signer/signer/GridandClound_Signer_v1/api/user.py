@@ -22,12 +22,12 @@ class User(Resource):
         conn = sqlite3.connect('users.sqlite3')
         cur = conn.cursor()
 
-        cur.execute(f'SELECT id FROM users WHERE users.email = "{email}"')
+        cur.execute(f"SELECT id FROM users WHERE users.email = '{email}'")
         res = cur.fetchall()
 
         if len(res) > 0:
             return utils.resp_xml("USER ALREADY EXISTS", 400)
-        cur.execute(f'INSERT INTO users (id, email, password) VALUES ("{id}", "{email}", "{password}")')
+        cur.execute(f"INSERT INTO users (id, email, password) VALUES ('{id}', '{email}', '{password}')")
         conn.commit()
 
         cur.execute('SELECT * FROM users')
