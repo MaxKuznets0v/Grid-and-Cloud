@@ -31,12 +31,12 @@ class Document(Resource):
         id = res[0][0]
         data = raw_data + id
         hsh = hashlib.sha256(data.encode()).hexdigest()
-        doc = ET.Element('doc')
-        doc.text = xml_data.find('doc').text
         sign = ET.Element("sign")
         sign.text = hsh
-        result = ET.Element("Document")
-        result.append(doc)
+        result = ET.Element("doc")
+        doc = xml_data.find('doc')
+        for elem in doc:
+            result.append(elem)
         result.append(sign)
 
         return utils.resp_xml(tostring(result), 200)
